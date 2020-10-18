@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DatosDesaparecido;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DatosDesaparecidoController extends Controller
 {
@@ -15,6 +16,8 @@ class DatosDesaparecidoController extends Controller
     public function index()
     {
         //
+        $datos['DatosDesaparecidos']=DatosDesaparecido::paginate(5);
+        return view('DatosDesaparecidos.index',$datos);
     }
 
     /**
@@ -25,6 +28,7 @@ class DatosDesaparecidoController extends Controller
     public function create()
     {
         //
+        return view('DatosDesaparecidos.create');
     }
 
     /**
@@ -35,7 +39,13 @@ class DatosDesaparecidoController extends Controller
      */
     public function store(Request $request)
     {
+        $fecha = Carbon::now();
         //
+        $datosDesaparecido=request()->except('_token');
+        $datosDesaparecido['created_at']=$fecha;
+        $datosDesaparecido['updated_at']=$fecha;
+        DatosDesaparecido::insert($datosDesaparecido);
+        //return response()->json($datosDesaparecido);
     }
 
     /**
@@ -78,8 +88,10 @@ class DatosDesaparecidoController extends Controller
      * @param  \App\DatosDesaparecido  $datosDesaparecido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DatosDesaparecido $datosDesaparecido)
+    public function destroy($id)
     {
         //
+        DatosDesaparecido::destroy($id);
+        return redirect('datosdesaparecidos');
     }
 }

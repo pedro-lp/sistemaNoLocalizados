@@ -15,14 +15,13 @@ class CreateDatosDesaparecidosTable extends Migration
     {
         Schema::create('datos_desaparecidos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('apellidoPat');
-            $table->string('apellidoMat');
+            $table->string('nombre',45);
+            $table->string('apellidoPat',45);
+            $table->string('apellidoMat',45);
             $table->integer('sexo');
-            $table->integer('genero');
             $table->integer('nacionalidad');
-            $table->string('curp');
-            $table->string('rfc');
+            $table->string('curp',18);
+            $table->string('rfc',13);
             $table->integer('edoCivil');
             $table->integer('edoNacimiento');
             $table->date('fechaNacimiento');
