@@ -63,4 +63,5 @@ $mysqli = new mysqli('localhost', 'root', null, 'no_localizados', 33069);
         <option value="1">Secundaria</option>
     </select><br>
     <input type="submit" value="Agregar">
+    <a href="{{ url ('datosdesaparecidos') }}">Regresar</a>
 </form>

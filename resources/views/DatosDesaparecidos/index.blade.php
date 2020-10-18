@@ -1,3 +1,8 @@
+@if(Session::has('Mensaje')){{
+Session::get('Mensaje')
+}}
+@endif
+<a href="{{ url ('datosdesaparecidos/create') }}">Agregar No Localizado</a>
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -23,6 +28,7 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$DatDes->nombre}}</td>
             <td>{{$DatDes->apellidoPat}}</td>
+            <td>{{$DatDes->apellidoMat}}</td>
             <td>{{$DatDes->sexo}}</td>
             <td>{{$DatDes->nacionalidad}}</td>
             <td>{{$DatDes->curp}}</td>
@@ -32,7 +38,8 @@
             <td>{{$DatDes->fechaNacimiento}}</td>
             <td>{{$DatDes->edad}}</td>
             <td>{{$DatDes->escolaridad}}</td>
-            <td>Editar|
+            <td><a href="{{ url('/datosdesaparecidos/'.$DatDes->id.'/edit') }}">Editar</a>
+            |
                 <form method="post" action="{{ url('/datosdesaparecidos/'.$DatDes->id) }}">
                 {{csrf_field() }}
                 {{method_field('DELETE') }}
