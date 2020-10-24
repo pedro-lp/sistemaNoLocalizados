@@ -16,7 +16,7 @@ class DatosDesaparecidoController extends Controller
     public function index()
     {
         //
-        $datos['DatosDesaparecidos']=DatosDesaparecido::paginate(5);
+        $datos['DatosDesaparecidos']=DatosDesaparecido::paginate(10);
         return view('DatosDesaparecidos.index',$datos);
     }
 
@@ -39,6 +39,22 @@ class DatosDesaparecidoController extends Controller
      */
     public function store(Request $request)
     {
+        $campos=[
+            'nombre' => 'required|string|max:100',
+            'apellidoPat' => 'required|string|max:100',
+            'apellidoMat' => 'required|string|max:100',
+            'sexo' => 'required|string|max:100',
+            'nacionalidad' => 'required|string|max:100',
+            'curp' => 'required|string|max:100',
+            'rfc' => 'required|string|max:100',
+            'edoCivil' => 'required|string|max:100',
+            'edoNacimiento' => 'required|string|max:100',
+            'fechaNacimiento' => 'required|string|max:100',
+            'edad' => 'required|string|max:100',
+            'escolaridad' => 'required|string|max:100'
+        ];
+        $Mensaje =["required"=>'El atributo :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
         $fecha = Carbon::now();
         //
         $datosDesaparecido=request()->except('_token');
@@ -82,6 +98,22 @@ class DatosDesaparecidoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $campos=[
+            'nombre' => 'required|string|max:100',
+            'apellidoPat' => 'required|string|max:100',
+            'apellidoMat' => 'required|string|max:100',
+            'sexo' => 'required|string|max:100',
+            'nacionalidad' => 'required|string|max:100',
+            'curp' => 'required|string|max:100',
+            'rfc' => 'required|string|max:100',
+            'edoCivil' => 'required|string|max:100',
+            'edoNacimiento' => 'required|string|max:100',
+            'fechaNacimiento' => 'required|string|max:100',
+            'edad' => 'required|string|max:100',
+            'escolaridad' => 'required|string|max:100'
+        ];
+        $Mensaje =["required"=>'El atributo :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
         //
         $fecha = Carbon::now();
         //

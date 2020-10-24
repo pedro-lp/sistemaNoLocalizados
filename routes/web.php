@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::resource('datosdesaparecidos', 'DatosDesaparecidoController');
+Route::resource('datosdesaparecidos', 'DatosDesaparecidoController')->middleware('auth');
+Auth::routes();//evita registrar usuarios Auth::routes(['register'=>false]);
+//evitar recuperar contraseña del usuarios Auth::routes(['register'=>false,'reset'=>false]);
+Route::get('/home', 'DatosDesaparecidoController@index')->name('home');
